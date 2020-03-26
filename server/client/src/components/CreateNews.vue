@@ -109,7 +109,7 @@
 import NewsDataService from "../services/NewsDataService";
 
 export default {
-  name: "create",
+  name: "create-news",
   data() {
     return {
       news: {

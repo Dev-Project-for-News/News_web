@@ -13,45 +13,31 @@
         </div>
       </div>
     </div> -->
-    <div class="col-md-6">
-      <h4>News List</h4>
+    <div class="col-md-12">
       <ul class="list-group">
-        <li class="list-group-item"
+        <li class="list-group-item border-top shadow mt-3"
           :class="{ active: index == currentIndex }"
-          v-for="(_news, index) in news"
+          v-for="(_news, index) in showNews"
           :key="index"
           @click="setActiveNews(_news, index)"
         >
-          {{ _news.title }}
+        <a :href="_news.id">
+          <b>{{ _news.title }}</b>
+          <hr/>
+          {{ _news.ann }}
+        </a>
+          
         </li>
       </ul>
 
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllNews">
-        Remove All
-      </button>
-    </div>
-    <div class="col-md-6">
-      <div v-if="currentNews" class="mt-4">
-        <div>
-          <label><strong>Title </strong></label> {{ currentNews.title }}
-        </div>
-        <div>
-          <label><strong>Topic </strong></label> {{ currentNews.topic }}
-        </div>
-        <div>
-          {{ currentNews.text }}
-        </div>
-
-        <a class="badge badge-warning"
-          :href="'/' + currentNews.id"
-        >
-          Edit
-        </a>
+      <div v-if="visible" class="btn-list">
+        <div class="next border border-primary bg-light rounded p-1 mb-1"
+          @click="getNextNews()" >MORE</div>
       </div>
-      <!-- <div v-else>
-        <br />
-        <p>Please click on a News...</p>
-      </div> -->
+
+      <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllNews">
+        Удалить все
+      </button> -->
     </div>
   </div>
 </template>
@@ -64,6 +50,9 @@ export default {
   data() {
     return {
       news: [],
+      showNews: [],
+      showNewsIndex: 10,
+      visible: true,
       currentNews: null,
       currentIndex: -1,
       title: ""
@@ -74,11 +63,22 @@ export default {
       NewsDataService.getAll()
         .then(response => {
           this.news = response.data;
+          this.showNews = this.news.slice(0,10);
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
+    },
+
+    getNextNews() {
+      if (this.news.length > this.showNewsIndex) {
+        this.showNewsIndex += 10;
+        if (this.news.length <= this.showNewsIndex) this.visible = false;
+      } else {
+        this.visible = false;
+      }
+      this.showNews = this.news.slice(0,this.showNewsIndex);
     },
 
     refreshList() {
@@ -123,7 +123,27 @@ export default {
 <style>
 .list {
   text-align: left;
-  max-width: 750px;
+  width: 80%;
   margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+    text-decoration: none; /* Делает ссылку подчеркнутой при наведении на нее курсора */
+    color: #343a40;
+   } 
+
+.btn-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+
+.btn-list .round {
+    border-radius: 50%;
 }
 </style>

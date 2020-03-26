@@ -12,14 +12,14 @@ export default new Router({
       name: "news",
       component: () => import("./components/NewsList")
     },
-    {
-      path: "/news/:id",
+	{
+      path: "/:id",
       name: "news-details",
       component: () => import("./components/News")
     },
     {
-      path: "/create",
-      name: "create",
+      path: "/news/create",
+      name: "create-news",
       component: () => import("./components/CreateNews")
     }
   ]

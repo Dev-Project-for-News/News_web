@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">Home</a>
+      <a href="#" class="navbar-brand">Project</a>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link">News</a>
+          <a href="/" class="nav-link">Новости</a>
         </li>
         <li class="nav-item">
-          <a href="/create" class="nav-link">Create</a>
+          <a href="#" class="nav-link">Категории</a>
+        </li>
+        <li class="nav-item">
+          <a href="/news/create" class="nav-link">Добавить</a>
         </li>
       </div>
     </nav>
