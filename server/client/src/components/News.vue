@@ -3,8 +3,8 @@
     <h4> {{currentNews.title }}</h4>
 
     <div class="info">
-      <p>{{currentNews.topic}}</p>
-      <a :href="currentNews.url">{{currentNews.source}}</a>
+      <p>{{currentNews.topicId}}</p>
+      <a :href="currentNews.url">{{currentNews.sourceId}}</a>
     </div>
     
     <p>{{ currentNews.text }}</p>
@@ -27,7 +27,6 @@ export default {
       NewsDataService.get(id)
         .then(response => {
           this.currentNews = response.data;
-          console.log(response.data);
         })
         .catch(e => {
           console.log(e);

@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const News = sequelize.define("news", {
-    topic: {
+    topicId: {
       type: Sequelize.TEXT('tiny') 
     },
     title: {
@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
     date: {
       type: Sequelize.STRING(10)
     },
-    source: {
+    sourceId: {
       type: Sequelize.TEXT('tiny') 
     },
     url: {

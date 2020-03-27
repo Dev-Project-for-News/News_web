@@ -22,5 +22,7 @@ db.sequelize = sequelize;
 db.news = require("./modelNews")(sequelize, Sequelize);
 db.topic = require("./modelTopic")(sequelize, Sequelize);
 db.source = require("./modelSource")(sequelize, Sequelize);
+db.topic.hasMany(db.news, { onDelete: "cascade" });
+db.source.hasMany(db.news, { onDelete: "cascade" });
 
 module.exports = db;

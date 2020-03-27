@@ -143,7 +143,19 @@ exports.deleteAll = (req, res) => {
 
 // ----------------------- TOPIC -------------------------------
 
+exports.findTopic = (req, res) => {
+  const id = req.params.id;
 
+  Topic.findByPk(id)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving News with id=" + id
+      });
+    });
+};
 // 
 exports.findAllNewsInTopic = (req, res) => {
   const _topic = req.params.topic;
@@ -167,6 +179,20 @@ exports.findAllNewsInTopic = (req, res) => {
 // ----------------------- END --------------------------------
 
 // ----------------------- SOURCE ------------------------------
+
+exports.findSource = (req, res) => {
+  const id = req.params.id;
+
+  Source.findByPk(id)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving News with id=" + id
+      });
+    });
+};
 
 // find all News in source
 exports.findAllNewsInSource = (req, res) => {
